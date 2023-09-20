@@ -1,0 +1,31 @@
+#!/bin/matlab
+
+clc
+clear 
+close all
+
+%%%%%%% all measurements in mmH2O
+%% stagnation pressure
+angles = [0 10 20 30];
+
+round_end = [38.4198 37.1985	32.2308	22.7047]*9.80665 +101325; %pa
+outer_cone_end = [38.3673 37.3649 34.5424 26.9001]*9.80665 +101235;%pa
+inner_cone_end = [38.4034 38.3288 37.7294 33.9902]*9.80665+101235; %pa
+
+round_pressure_deviation = (round_end(1)-round_end)./(round_end(1));
+outer_cone_pressure_deviation = (outer_cone_end(1)-outer_cone_end)./(outer_cone_end(1));
+inner_cone_pressure_deviation = (inner_cone_end(1)-inner_cone_end)./(inner_cone_end(1));
+
+
+figure(1)
+hold on
+plot(angles, round_pressure_deviation,"o")
+plot(angles, outer_cone_pressure_deviation,"o")
+plot(angles, inner_cone_pressure_deviation,"o")
+title('Normalized Stagnation Pressure Measurements', 'By Group H')
+
+xlabel("Yaw angle [degrees]")
+ylabel("Normalized pressure difference")
+grid on
+legend("round","outer","inner")
+hold off
